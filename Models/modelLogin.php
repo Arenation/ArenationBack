@@ -32,7 +32,7 @@ function Login($data)
 {
     $bd = connection();
     $encodepass = md5($data->password);
-    $sentencia = $bd->prepare("SELECT * FROM usuarios");
+    $sentencia = $bd->prepare("SELECT * FROM usuarios WHERE email = ? AND passw = ?");
     $sentencia->execute([$data->email, $encodepass]);
     return $sentencia->fetchObject();
 }
