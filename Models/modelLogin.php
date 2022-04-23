@@ -42,7 +42,7 @@ function connection()
     $pass = "";
     $user = "root";
     $dbName = "validar";
-    $database = new PDO('mysql:host=127.0.0.1;dbname=' . $dbName, $user, $pass);
+    $database = new PDO('pgsql:host=ec2-34-192-210-139.compute-1.amazonaws.com;dbname=' . $dbName, $user, $pass);
     $database->query("set names utf8;");
     $database->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
     $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
