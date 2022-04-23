@@ -39,10 +39,10 @@ function Login($data)
 
 function connection()
 {
-    $pass = "";
-    $user = "root";
-    $dbName = "validar";
-    $database = new PDO('mysql:host=127.0.0.1;dbname=' . $dbName, $user, $pass);
+    $pass = "ce8ba12b90601ee125a4e41ccc55983fab6e4898f76948b5c5f957515e1f6d09";
+    $user = "btrkioumjjkibb";
+    $dbName = "d7jecr30ej3csa";
+    $database = new PDO('psql:host=127.ec2-34-192-210-139.compute-1.amazonaws.com;dbname=' . $dbName, $user, $pass);
     $database->query("set names utf8;");
     $database->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
     $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
