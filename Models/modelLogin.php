@@ -19,13 +19,9 @@ function GetAll()
 function GetUser($data)
 {
     $bd = connection();
-    $sentencia = $bd->prepare("SELECT * FROM usuarios where email = ?");
-    $sentencia->execute([$data->email]);
-    if($sentencia->fetchObject() != false){
-        return true;
-    }else{
-        return false;
-    }
+    $sentencia = $bd->prepare("SELECT * FROM usuarios where email = ? or id = ?");
+    $sentencia->execute([$data->email, $data->id]);
+    return $sentencia->fetchObject();
 }
 
 function Login($data)
