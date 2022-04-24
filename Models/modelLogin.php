@@ -1,5 +1,32 @@
 <?php
 
+function ChangePassword($data)
+{
+    $bd = connection();
+    $encodepass = md5($data->currentpassword);
+    $newencodepass = md5($data->newpassword);
+    $sentencia1 = $bd->prepare("SELECT * FROM usuarios WHERE passw = ? and id = ?");
+    $sentencia1->execute([$encodepass, $data->id]);
+    if($sentencia1->rowCount() > 0)
+    {
+        $sentencia2 = $bd->prepare("UPDATE usuarios SET passw = ? WHERE id = ?");
+        $sentencia2->execute([$newencodepass, $data->id]);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+function UpdateUser($data)
+{
+    $bd = connection();
+    $sentencia = $bd->prepare("UPDATE usuarios SET names = ?, lastnames = ? where id = ?");
+    $response = $sentencia->execute([$data->names, $data->lastnames, $data->id]);
+    return $response;
+}
+
 function CreateUser($data)
 {
     $bd = connection();
